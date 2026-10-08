@@ -1,0 +1,3 @@
+# Public GitHub repo that holds the mod files, written as owner/name.
+# The shared app downloads over HTTPS. Friends do not need Git installed.
+kmd-code/dragonwilds-spell-cooldowns
