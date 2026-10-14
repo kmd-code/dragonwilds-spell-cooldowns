@@ -49,7 +49,7 @@ Vanilla seconds that still matched build `25812671`, and the values written into
 | Home Teleport | `USD_HomeTeleport` | 900 | 1 |
 | Uproot | `USD_Harvest` | 5 | 1 |
 
-Those pairs live in `SPELLS` at the top of `app/update-cooldowns.py`. On this bump they did not need to change. The new pack is still different because the game's chunk bytes changed. Published version: `cf674a1bf82d`.
+Those pairs live in `SPELLS` at the top of `app/update-cooldowns.py`. On this bump they did not need to change. The new pack is still different because the game's chunk bytes changed. The script prints `Wrote manifest` with the id to publish. For build `25812671` that id is `88aaafaf40ed`. The previous published id was `1af8f9bdabf4`.
 
 If the script says a spell no longer has a single vanilla cooldown, that old number changed. Search the extracted `.uexp` for the nearby float, update the old value in `SPELLS`, and run the command again. Leave the target seconds alone unless the intended cooldown changed.
 
@@ -57,7 +57,9 @@ The shared exe does not need a rebuild when only the pak changes. `app/cooldown_
 
 ## 3. Publish
 
-Commit `mod/manifest.json` and the three `mod/zzz_SpellCooldowns_P.*` files, then push `main`. The app reads:
+This PC has `core.autocrlf=true`. `.gitattributes` marks `*.pak`, `*.utoc`, and `*.ucas` as binary so a checkout does not rewrite them. Without that, a fresh clone shows those files as modified before any rebuild, and hashing that tree publishes the wrong version. Commit only after the script prints `Wrote manifest`, and check `mod/manifest.json` matches that line.
+
+Commit `mod/manifest.json` and the three `mod/zzz_SpellCooldowns_P.*` files, then push `main`. `gh` is not on PATH. The app reads:
 
 `https://raw.githubusercontent.com/kmd-code/dragonwilds-spell-cooldowns/main/mod/manifest.json`
 
