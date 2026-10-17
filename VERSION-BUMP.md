@@ -16,7 +16,7 @@ Pak folder:
 
 `C:\Program Files (x86)\Steam\steamapps\common\RSDragonwilds\RSDragonwilds\Content\Paks`
 
-The 2026-10-14 bump used client build `25812671`. The previous published mod, `1af8f9bdabf4`, was built on 2026-10-08.
+The 2026-10-17 bump used client build `25994193`. The previous published mod, `88aaafaf40ed`, was built on 2026-10-14 for client build `25812671`.
 
 ## 2. Rebuild from that install
 
@@ -39,7 +39,7 @@ What that command does:
 5. Copies the three files into the game's `Content\Paks\~mods`.
 6. Copies them to `mod/` and writes `mod/manifest.json`. The version is the first 12 hex chars of the SHA-256 of the three file hashes concatenated in pak, utoc, ucas order.
 
-Vanilla seconds that still matched build `25812671`, and the values written into the pack:
+Vanilla seconds that still matched build `25994193`, and the values written into the pack:
 
 | Spell | Asset | Vanilla | Mod |
 |---|---|---|---|
@@ -49,7 +49,7 @@ Vanilla seconds that still matched build `25812671`, and the values written into
 | Home Teleport | `USD_HomeTeleport` | 900 | 1 |
 | Uproot | `USD_Harvest` | 5 | 1 |
 
-Those pairs live in `SPELLS` at the top of `app/update-cooldowns.py`. On this bump they did not need to change. The new pack is still different because the game's chunk bytes changed. The script prints `Wrote manifest` with the id to publish. For build `25812671` that id is `88aaafaf40ed`. The previous published id was `1af8f9bdabf4`.
+Those pairs live in `SPELLS` at the top of `app/update-cooldowns.py`. On this bump they did not need to change. The new pack is still different because the game's chunk bytes changed. The script prints `Wrote manifest` with the id to publish. For build `25994193` that id is `113f429d8fd3`. The previous published id was `88aaafaf40ed`. Vanilla seconds were still 60, 45, 45, 900, and 5.
 
 If the script says a spell no longer has a single vanilla cooldown, that old number changed. Search the extracted `.uexp` for the nearby float, update the old value in `SPELLS`, and run the command again. Leave the target seconds alone unless the intended cooldown changed.
 
